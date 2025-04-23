@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hotel Search</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      background: #f5f5f5;
+    }
+    form {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+    input, button {
+      padding: 10px;
+      font-size: 16px;
+    }
+    #results {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+    }
+    .hotel-card {
+      border: 1px solid #ccc;
+      background: #fff;
+      padding: 15px;
+      border-radius: 10px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    }
+    .hotel-card h3 {
+      margin: 10px 0 5px;
+    }
+    .hotel-card p {
+      margin: 5px 0;
+    }
+  </style>
+</head>
+<body>
+  <h1>Find Hotels in Nassau</h1>
+  <form onsubmit="searchHotels(event)">
+    <input type="date" id="checkin" required />
+    <input type="date" id="checkout" required />
+    <input type="number" id="guests" value="2" min="1" required />
+    <button type="submit">Search</button>
+  </form>
+
+  <div id="results"></div>
+
+  <script>
+    async function searchHotels(event) {
+      event.preventDefault();
+      const checkin = document.getElementById("checkin").value;
+      const checkout = document.getElementById("checkout").value;
+      const guests = document.getElementById("guests").value;
+
+      const res = await fetch(`/search?checkin=${checkin}&checkout=${checkout}&guests=${guests}`);
+      const hotels = await res.json();
+
+      const results = document.getElementById("results");
+      results.innerHTML = "";
+      hotels.forEach(h => {
+        results.innerHTML += `
+          <div class="hotel-card">
+            <h3>${h.name}</h3>
+            <p>${h.description}</p>
+            <p>Rating: ${h.rating} | Price: BSD ${h.price}</p>
+          </div>
+        `;
+      });
+    }
+  </script>
+</body>
+</html>
