@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>IS4H Bahamas | In the News</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="icon" type="image/png" sizes="32x32" href="img/favicon_is4h/favicon-32x32.png">
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/font-awesome.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .news-item {
+      border-bottom: 1px solid #ddd;
+      padding: 20px 0;
+    }
+
+    .news-title {
+      font-size: 18px;
+      font-weight: bold;
+      cursor: pointer;
+      color: #0056b3;
+    }
+
+    .news-description {
+      display: none;
+      margin-top: 10px;
+    }
+
+    .news-date {
+      font-size: 14px;
+      color: #888;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrapp-content">
+    <!-- Header -->
+    <header class="wrapp-header">
+      <div class="header-box-01">
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-4">
+              <a href="index.html" class="logo">
+                <img src="img/logo long.png" alt="IS4H Logo">
+              </a>
+            </div>
+            <div class="col-sm-8 text-right">
+              <a class="btn-app" href="mailto:is4h@bahamas.gov.bs">CONTACT US</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="header-box-02">
+        <div class="container">
+          <div class="main-nav">
+            <ul class="main-nav__list">
+              <li><a href="index.html">Home</a></li>
+              <li><a href="about_us.html">About</a></li>
+              <li><a href="services.html">Services</a></li>
+              <li class="active"><a href="#">News</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="content-row">
+      <div class="page-title-wrapp">
+        <div class="container">
+          <h2 class="page-title-01">In the News</h2>
+          <ul class="breadcrumbs">
+            <li><a href="index.html">Home</a></li>
+            <li class="active">News</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="content-box-01 pad-top-60 pad-bt-80">
+        <div class="container">
+          <div id="news-list"></div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="wrapp-footer"> ... </footer>
+  </div>
+
+  <script>
+    (() => {
+      const newsData = [
+        { date: '4/25', title: 'A new perinatal app has been rolled out by the Department of Health', link: 'https://www.facebook.com/reel/1032743132088634' },
+        { date: '4/25', title: 'Explore the case of The Bahamas as they roll out their IS4H strategy', link: 'https://www.youtube.com/watch?v=bu1cOEXyyjA' },
+        { date: '3/25', title: 'SIP+ training workshops launched', link: 'https://www.paho.org/en/news/13-3-2025-implementation-sip-plus-strengthen-maternal-and-child-health-bahamas' },
+        { date: '2/25', title: 'Bahamas Nurses Union supports IS4H digital transformation', link: 'https://ewnews.com/bahamas-nurses-union-welcomes-digital-transformation-in-public-health/' },
+        { date: '2/25', title: 'Nurses show backing for digitisation', link: 'https://www.tribune242.com/news/2025/feb/06/nurses-show-backing-for-digitisation/' },
+        { date: '2/25', title: 'Govt testing new electronic medical records system in partnership with PAHO/WHO and IDB', link: 'https://www.tribune242.com/news/2025/feb/19/govt-testing-new-electronic-medical-records-system-in-partnership-with-paho-who-and-idb/' },
+        { date: '1/25', title: 'Two clinics to participate in pilot program next month', link: 'https://ournews.bs/two-clinics-to-participate-in-pilot-program-next-month/' },
+        { date: '1/25', title: 'BahamasEMR+ passes key testing phase ahead of pilot launch', link: 'https://ewnews.com/bahamasemr-passes-key-testing-phase-ahead-of-pilot-launch/' },
+        { date: '1/25', title: 'Digipay and portable records: the future of Bahamian healthcare', link: 'https://ournews.bs/digipay-and-portable-records-the-future-of-bahamian-healthcare/' },
+        { date: '8/24', title: 'Bahamas advances digital health information – IS4H pilot programmes launched', link: 'https://magneticmediatv.com/2024/08/bahamas-advances-digital-health-information-is4h-bahamas-pilot-programmes-launched/?noamp=mobile' },
+        { date: '8/24', title: 'IS4H Bahamas Launches LMS for Public Health Personnel', link: 'https://www.bahamaslocal.com/newsitem/320954/IS4H_Bahamas_Launches_LMS_for_Public_Health_Personnel.html' }
+      ];
+
+      window.addEventListener('DOMContentLoaded', () => {
+        const container = document.getElementById('news-list');
+        newsData.forEach(item => {
+          const wrapper = document.createElement('div');
+          wrapper.className = 'news-item';
+
+          const title = document.createElement('div');
+          title.className = 'news-title';
+          title.innerText = `${item.date}: ${item.title}`;
+
+          const description = document.createElement('div');
+          description.className = 'news-description';
+          description.innerHTML = `<p><a href="${item.link}" target="_blank">View article</a></p>`;
+
+          title.addEventListener('click', () => {
+            description.style.display = description.style.display === 'none' ? 'block' : 'none';
+          });
+
+          wrapper.appendChild(title);
+          wrapper.appendChild(description);
+          container.appendChild(wrapper);
+        });
+      });
+    })();
+  </script>
+</body>
+</html>
