@@ -49,7 +49,7 @@
 
 	<div class="wrapp-content">
 
-		<!-- Header -->
+		<!-- Header 
 		<header class="wrapp-header">
 			<div class="info-block-01">
 				<div class="container">
@@ -80,8 +80,8 @@
 						</div>
 					</div>
 				</div>
-			</div>
-
+			</div> -->
+<div id="header"></div>
 			<!-- Main navigation -->
 			<div class="header-box-02">
 				<div class="container">
@@ -322,7 +322,7 @@
 			</div>
 		</main>
 
-		<!-- Footer -->
+		<!-- Footer 
 		<footer class="wrapp-footer">
 			<div class="footer-box-01">
 				<div class="container">
@@ -433,7 +433,9 @@
 				</div>
 			</div>
 			<a href="#" class="back2top" title="Back to Top">Back to Top</a>
-		</footer>
+		</footer> -->
+
+		<div id="footer"></div>
 
 	</div>
 
@@ -451,6 +453,17 @@
 
 	<!-- Main script -->
 	<script src="js/main.js"></script>
+
+	<!-- Header & Footer -->
+	<script>
+  fetch('header.html')
+    .then(res => res.text())
+    .then(data => document.getElementById('header').innerHTML = data);
+
+  fetch('footer.html')
+    .then(res => res.text())
+    .then(data => document.getElementById('footer').innerHTML = data);
+</script>
 
 </body>
 
